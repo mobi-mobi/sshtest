@@ -2,30 +2,32 @@ package main
 
 import "fmt"
 
-type shape interface {
-	Area() float64
+type livingBeing interface {
+	isLivingCreature() bool
 }
-type square struct {
-	a float64
-}
-
-type rectangle struct {
-	a float64
-	b float64
+type dog struct {
+	breed   string
+	isAlive bool
 }
 
-func (s square) Area() float64 {
-	return s.a * s.a
+type human struct {
+	race    string
+	isAlive bool
 }
 
-func (r rectangle) Area() float64 {
-	return r.a * r.b
+func (d dog) isLivingCreature() bool {
+	return d.isAlive
+}
+
+func (h human) isLivingCreature() bool {
+	return h.isAlive
 }
 
 func main() {
-	stvorec := square{4}
-	obdlznik := rectangle{4, 3}
+	jozo := human{"white", true}
+	jazvecik := dog{"jazvecik", true}
 
-	shapes := []shape{stvorec, obdlznik}
-	fmt.Println(shapes[1].Area())
+	livingBeings := []livingBeing{jozo, jazvecik}
+	fmt.Println(livingBeings[1].isLivingCreature())
+
 }
